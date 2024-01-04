@@ -16,24 +16,43 @@ const (
 	INT   TokenType = "INT"
 
 	// Operators
-	ASSIGN TokenType = "ASSIGN"
-	PLUS   TokenType = "PLUS"
+	ASSIGN   TokenType = "="
+	PLUS     TokenType = "+"
+	MINUS    TokenType = "-"
+	ASTERISK TokenType = "*"
+	SLASH    TokenType = "/"
+	BANG     TokenType = "!"
+
+	GT     TokenType = ">"
+	LT     TokenType = "<"
+	EQ     TokenType = "=="
+	NOT_EQ TokenType = "!="
 
 	// Delimiters
-	COMMA     TokenType = "COMMA"
-	SEMICOLON TokenType = "SEMICOLON"
+	COMMA     TokenType = ","
+	SEMICOLON TokenType = ";"
 
-	LPAREN TokenType = "LPAREN"
-	RPAREN TokenType = "RPAREN"
-	LBRACE TokenType = "LBRACE"
-	RBRACE TokenType = "RBRACE"
+	LPAREN TokenType = "("
+	RPAREN TokenType = ")"
+	LBRACE TokenType = "{"
+	RBRACE TokenType = "}"
 
 	// Keywords
 	FUNCTION TokenType = "FUNCTION"
 	LET      TokenType = "LET"
+	TRUE     TokenType = "TRUE"
+	FALSE    TokenType = "FALSE"
+	IF       TokenType = "IF"
+	ELSE     TokenType = "ELSE"
+	RETURN   TokenType = "RETURN"
 )
 
 var Keywords = map[string]TokenType{
-	"fn":  FUNCTION,
-	"let": LET,
+	"fn":     FUNCTION,
+	"let":    LET,
+	"true":   TRUE,
+	"false":  FALSE,
+	"if":     IF,
+	"else":   ELSE,
+	"return": RETURN,
 }

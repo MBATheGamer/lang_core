@@ -14,7 +14,7 @@ let ten = 10;
 
 let add = fn(x, y) {
 	x + y;
-}
+};
 	`
 
 	var tests = []TestToken{
@@ -121,6 +121,15 @@ let add = fn(x, y) {
 		{
 			expectedType:    token.RBRACE,
 			expectedLiteral: "}",
+		},
+		{
+			expectedType:    token.SEMICOLON,
+			expectedLiteral: ";",
+		},
+
+		{
+			expectedType:    token.EOF,
+			expectedLiteral: "",
 		},
 	}
 

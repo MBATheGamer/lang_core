@@ -43,6 +43,11 @@ func TestFirstNextToken(t *testing.T) {
 			expectedType:    token.SEMICOLON,
 			expectedLiteral: ";",
 		},
+
+		{
+			expectedType:    token.EOF,
+			expectedLiteral: "",
+		},
 	}
 
 	var lex = lexer.New(input)

@@ -9,9 +9,39 @@ func (lex *Lexer) NextToken() token.Token {
 
 	switch lex.ch {
 	case '=':
-		tok = newToken(token.ASSIGN, lex.ch)
+		if lex.peekChar() == '=' {
+			var ch = lex.ch
+			lex.readChar()
+			tok = token.Token{
+				Type:    token.EQ,
+				Literal: string(ch) + string(lex.ch),
+			}
+		} else {
+			tok = newToken(token.ASSIGN, lex.ch)
+		}
 	case '+':
 		tok = newToken(token.PLUS, lex.ch)
+	case '-':
+		tok = newToken(token.MINUS, lex.ch)
+	case '*':
+		tok = newToken(token.ASTERISK, lex.ch)
+	case '/':
+		tok = newToken(token.SLASH, lex.ch)
+	case '!':
+		if lex.peekChar() == '=' {
+			var ch = lex.ch
+			lex.readChar()
+			tok = token.Token{
+				Type:    token.NOT_EQ,
+				Literal: string(ch) + string(lex.ch),
+			}
+		} else {
+			tok = newToken(token.BANG, lex.ch)
+		}
+	case '>':
+		tok = newToken(token.GT, lex.ch)
+	case '<':
+		tok = newToken(token.LT, lex.ch)
 	case ',':
 		tok = newToken(token.COMMA, lex.ch)
 	case ';':
