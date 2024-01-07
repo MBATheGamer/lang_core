@@ -6,16 +6,20 @@ import (
 )
 
 type Parser struct {
-	lex          *lexer.Lexer
+	lexer        *lexer.Lexer
 	currentToken token.Token
 	peekToken    token.Token
+	errors       []string
 }
 
 func New(lex *lexer.Lexer) *Parser {
-	var parse = &Parser{lex: lex}
+	var parser = &Parser{
+		lexer:  lex,
+		errors: []string{},
+	}
 
-	parse.nextToken()
-	parse.nextToken()
+	parser.nextToken()
+	parser.nextToken()
 
-	return parse
+	return parser
 }

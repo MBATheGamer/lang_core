@@ -5,10 +5,10 @@ import (
 	"github.com/MBATheGamer/lang_core/token"
 )
 
-func (parse *Parser) parseStatement() ast.Statement {
-	switch parse.currentToken.Type {
+func (parser *Parser) parseStatement() ast.Statement {
+	switch parser.currentToken.Type {
 	case token.LET:
-		return parse.parseLetStatement()
+		return parser.parseLetStatement()
 	default:
 		return nil
 	}

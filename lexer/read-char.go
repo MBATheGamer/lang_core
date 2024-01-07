@@ -1,11 +1,11 @@
 package lexer
 
-func (lex *Lexer) readChar() {
-	if lex.readPosition >= len(lex.input) {
-		lex.ch = 0
+func (lexer *Lexer) readChar() {
+	if lexer.readPosition >= len(lexer.input) {
+		lexer.ch = 0
 	} else {
-		lex.ch = lex.input[lex.readPosition]
+		lexer.ch = lexer.input[lexer.readPosition]
 	}
-	lex.position = lex.readPosition
-	lex.readPosition += 1
+	lexer.position = lexer.readPosition
+	lexer.readPosition += 1
 }

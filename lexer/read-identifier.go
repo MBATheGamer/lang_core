@@ -1,11 +1,11 @@
 package lexer
 
-func (lex *Lexer) readIdentifier() string {
-	var position = lex.position
+func (lexer *Lexer) readIdentifier() string {
+	var position = lexer.position
 
-	for isLetter(lex.ch) {
-		lex.readChar()
+	for isLetter(lexer.ch) {
+		lexer.readChar()
 	}
 
-	return lex.input[position:lex.position]
+	return lexer.input[position:lexer.position]
 }

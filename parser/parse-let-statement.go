@@ -5,26 +5,26 @@ import (
 	"github.com/MBATheGamer/lang_core/token"
 )
 
-func (parse *Parser) parseLetStatement() *ast.LetStatement {
+func (parser *Parser) parseLetStatement() *ast.LetStatement {
 	var statement = &ast.LetStatement{
-		Token: parse.currentToken,
+		Token: parser.currentToken,
 	}
 
-	if !parse.expectPeek(token.IDENT) {
+	if !parser.expectPeek(token.IDENT) {
 		return nil
 	}
 
 	statement.Name = &ast.Identifier{
-		Token: parse.currentToken,
-		Value: parse.currentToken.Literal,
+		Token: parser.currentToken,
+		Value: parser.currentToken.Literal,
 	}
 
-	if !parse.expectPeek(token.ASSIGN) {
+	if !parser.expectPeek(token.ASSIGN) {
 		return nil
 	}
 
-	for !parse.currentTokenIs(token.SEMICOLON) {
-		parse.nextToken()
+	for !parser.currentTokenIs(token.SEMICOLON) {
+		parser.nextToken()
 	}
 
 	return statement

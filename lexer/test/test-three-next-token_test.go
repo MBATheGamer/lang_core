@@ -112,9 +112,9 @@ let result = add(five, ten);
 		},
 	}
 
-	var lex = lexer.New(input)
+	var lexer = lexer.New(input)
 
 	for i, test := range tests {
-		testToken(t, test, lex, i)
+		testToken(t, test, lexer, i)
 	}
 }

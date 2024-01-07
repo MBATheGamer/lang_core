@@ -8,11 +8,11 @@ type Lexer struct {
 }
 
 func New(input string) *Lexer {
-	var lex = &Lexer{
+	var lexer = &Lexer{
 		input: input,
 	}
 
-	lex.readChar()
+	lexer.readChar()
 
-	return lex
+	return lexer
 }

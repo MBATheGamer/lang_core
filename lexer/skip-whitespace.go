@@ -1,7 +1,7 @@
 package lexer
 
-func (lex *Lexer) skipWhitespace() {
-	for lex.ch == ' ' || lex.ch == '\t' || lex.ch == '\n' || lex.ch == '\r' {
-		lex.readChar()
+func (lexer *Lexer) skipWhitespace() {
+	for lexer.ch == ' ' || lexer.ch == '\t' || lexer.ch == '\n' || lexer.ch == '\r' {
+		lexer.readChar()
 	}
 }

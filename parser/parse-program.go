@@ -5,18 +5,18 @@ import (
 	"github.com/MBATheGamer/lang_core/token"
 )
 
-func (parse *Parser) ParseProgram() *ast.Program {
+func (parser *Parser) ParseProgram() *ast.Program {
 	var program = &ast.Program{}
 	program.Statements = []ast.Statement{}
 
-	for parse.currentToken.Type != token.EOF {
-		var statement = parse.parseStatement()
+	for parser.currentToken.Type != token.EOF {
+		var statement = parser.parseStatement()
 
 		if statement != nil {
 			program.Statements = append(program.Statements, statement)
 		}
 
-		parse.nextToken()
+		parser.nextToken()
 	}
 
 	return program

@@ -1,9 +1,9 @@
 package lexer
 
-func (lex *Lexer) peekChar() byte {
-	if lex.readPosition >= len(lex.input) {
+func (lexer *Lexer) peekChar() byte {
+	if lexer.readPosition >= len(lexer.input) {
 		return 0
 	} else {
-		return lex.input[lex.readPosition]
+		return lexer.input[lexer.readPosition]
 	}
 }

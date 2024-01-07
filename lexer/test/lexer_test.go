@@ -13,23 +13,23 @@ type TestToken struct {
 }
 
 func testToken(t *testing.T, test TestToken, lex *lexer.Lexer, index int) {
-	var tok = lex.NextToken()
+	var token = lex.NextToken()
 
-	if tok.Type != test.expectedType {
+	if token.Type != test.expectedType {
 		t.Fatalf(
 			"tests[%d] - token type wrong. expected=%q, got=%q",
 			index,
 			test.expectedType,
-			tok.Type,
+			token.Type,
 		)
 	}
 
-	if tok.Literal != test.expectedLiteral {
+	if token.Literal != test.expectedLiteral {
 		t.Fatalf(
 			"tests[%d] - literal wrong. expected=%q, got=%q",
 			index,
 			test.expectedLiteral,
-			tok.Literal,
+			token.Literal,
 		)
 	}
 }
