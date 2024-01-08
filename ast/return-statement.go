@@ -1,6 +1,10 @@
 package ast
 
-import "github.com/MBATheGamer/lang_core/token"
+import (
+	"bytes"
+
+	"github.com/MBATheGamer/lang_core/token"
+)
 
 type ReturnStatement struct {
 	Token       token.Token
@@ -11,4 +15,18 @@ func (rs *ReturnStatement) statementNode() {}
 
 func (rs *ReturnStatement) TokenLiteral() string {
 	return rs.Token.Literal
+}
+
+func (rs *ReturnStatement) String() string {
+	var output bytes.Buffer
+
+	output.WriteString(rs.TokenLiteral() + " ")
+
+	if rs.ReturnValue != nil {
+		output.WriteString(rs.ReturnValue.String())
+	}
+
+	output.WriteString(";")
+
+	return output.String()
 }
