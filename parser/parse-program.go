@@ -12,9 +12,7 @@ func (parser *Parser) ParseProgram() *ast.Program {
 	for parser.currentToken.Type != token.EOF {
 		var statement = parser.parseStatement()
 
-		if statement != nil {
-			program.Statements = append(program.Statements, statement)
-		}
+		program.Statements = append(program.Statements, statement)
 
 		parser.nextToken()
 	}
