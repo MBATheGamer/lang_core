@@ -1,6 +1,9 @@
 package parser
 
-import "github.com/MBATheGamer/lang_core/ast"
+import (
+	"github.com/MBATheGamer/lang_core/ast"
+	"github.com/MBATheGamer/lang_core/token"
+)
 
 func (parser *Parser) parseExpression(precedence int) ast.Expression {
 	var prefix = parser.prefixParseFns[parser.currentToken.Type]
@@ -11,6 +14,18 @@ func (parser *Parser) parseExpression(precedence int) ast.Expression {
 	}
 
 	var leftExpression = prefix()
+
+	for !parser.peekTokenIs(token.SEMICOLON) && precedence < parser.peekPrecedence() {
+		var infix = parser.infixParseFns[parser.peekToken.Type]
+
+		if infix == nil {
+			return leftExpression
+		}
+
+		parser.nextToken()
+
+		leftExpression = infix(leftExpression)
+	}
 
 	return leftExpression
 }

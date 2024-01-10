@@ -18,6 +18,13 @@ type TestPrefix struct {
 	integerValue int64
 }
 
+type TestInfix struct {
+	input      string
+	leftValue  int64
+	operator   string
+	rightValue int64
+}
+
 func checkParserError(t *testing.T, parser *parser.Parser) {
 	var errors = parser.Errors()
 
