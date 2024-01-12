@@ -25,14 +25,14 @@ type TestPrecedence struct {
 type TestPrefix struct {
 	input        string
 	operator     string
-	integerValue int64
+	integerValue interface{}
 }
 
 type TestInfix struct {
 	input      string
-	leftValue  int64
+	leftValue  interface{}
 	operator   string
-	rightValue int64
+	rightValue interface{}
 }
 
 func checkParserError(t *testing.T, parser *parser.Parser) {
@@ -170,8 +170,14 @@ func testIdentifier(t *testing.T, expression ast.Expression, value string) bool 
 	return true
 }
 
-func testLiteralExpression(t *testing.T, expression ast.Expression, expected interface{}) bool {
+func testLiteralExpression(
+	t *testing.T,
+	expression ast.Expression,
+	expected interface{},
+) bool {
 	switch v := expected.(type) {
+	case bool:
+		return testBooleanLiteral(t, expression, v)
 	case int:
 		return testIntegerLiteral(t, expression, int64(v))
 	case int64:
@@ -186,6 +192,45 @@ func testLiteralExpression(t *testing.T, expression ast.Expression, expected int
 	)
 
 	return false
+}
+
+func testBooleanLiteral(
+	t *testing.T,
+	expression ast.Expression,
+	value bool,
+) bool {
+	var boolean, ok = expression.(*ast.Boolean)
+
+	if !ok {
+		t.Errorf(
+			"expression not *ast.Boolean. got=%T",
+			expression,
+		)
+
+		return false
+	}
+
+	if boolean.Value != value {
+		t.Errorf(
+			"boolean.Value not %t. got=%t",
+			value,
+			boolean.Value,
+		)
+
+		return false
+	}
+
+	if boolean.TokenLiteral() != fmt.Sprintf("%t", value) {
+		t.Errorf(
+			"boolean.TokenLiteral not %t. got=%s",
+			value,
+			boolean.TokenLiteral(),
+		)
+
+		return false
+	}
+
+	return true
 }
 
 func testInfixExpression(

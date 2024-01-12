@@ -12,6 +12,8 @@ func TestParsingPrefixExpressions(t *testing.T) {
 	var prefixTests = []TestPrefix{
 		{"!5", "!", 5},
 		{"-15", "-", 15},
+		{"!true", "!", true},
+		{"!false", "!", false},
 	}
 
 	for _, test := range prefixTests {
@@ -56,7 +58,7 @@ func TestParsingPrefixExpressions(t *testing.T) {
 			)
 		}
 
-		if !testIntegerLiteral(t, expression.Right, test.integerValue) {
+		if !testLiteralExpression(t, expression.Right, test.integerValue) {
 			return
 		}
 	}

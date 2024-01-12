@@ -18,6 +18,9 @@ func TestParsingInfixExpression(t *testing.T) {
 		{"5 < 5", 5, "<", 5},
 		{"5 == 5", 5, "==", 5},
 		{"5 != 5", 5, "!=", 5},
+		{"true == true", true, "==", true},
+		{"true != false", true, "!=", false},
+		{"false == false", false, "==", false},
 	}
 
 	for _, test := range infixTests {
@@ -43,29 +46,13 @@ func TestParsingInfixExpression(t *testing.T) {
 			)
 		}
 
-		var expression *ast.InfixExpression
-		expression, ok = statement.Expression.(*ast.InfixExpression)
-
-		if !ok {
-			t.Fatalf(
-				"expression is not ast.InfixExpression. got=%T",
-				statement.Expression,
-			)
-		}
-
-		if !testIntegerLiteral(t, expression.Left, test.leftValue) {
-			return
-		}
-
-		if expression.Operator != test.operator {
-			t.Fatalf(
-				"expression.Operator is not '%s'. got=%s",
-				test.operator,
-				expression.Operator,
-			)
-		}
-
-		if !testIntegerLiteral(t, expression.Right, test.rightValue) {
+		if !testInfixExpression(
+			t,
+			statement.Expression,
+			test.leftValue,
+			test.operator,
+			test.rightValue,
+		) {
 			return
 		}
 	}
