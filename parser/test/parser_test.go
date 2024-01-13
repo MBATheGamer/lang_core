@@ -22,6 +22,11 @@ type TestPrecedence struct {
 	expected string
 }
 
+type TestFunctionParameters struct {
+	input    string
+	expected []string
+}
+
 type TestPrefix struct {
 	input        string
 	operator     string
