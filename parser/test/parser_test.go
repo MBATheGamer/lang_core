@@ -40,7 +40,7 @@ type TestInfix struct {
 	rightValue interface{}
 }
 
-func checkParserError(t *testing.T, parser *parser.Parser) {
+func checkParserErrors(t *testing.T, parser *parser.Parser) {
 	var errors = parser.Errors()
 
 	if len(errors) == 0 {

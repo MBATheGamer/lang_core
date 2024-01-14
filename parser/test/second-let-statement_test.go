@@ -18,7 +18,7 @@ let 838383;
 	var parser = parser.New(lexer)
 
 	var program = parser.ParseProgram()
-	checkParserError(t, parser)
+	checkParserErrors(t, parser)
 
 	if program == nil {
 		t.Fatalf(

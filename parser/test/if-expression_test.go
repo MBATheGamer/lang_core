@@ -14,7 +14,7 @@ func TestIfExpression(t *testing.T) {
 	var lexer = lexer.New(input)
 	var parser = parser.New(lexer)
 	var program = parser.ParseProgram()
-	checkParserError(t, parser)
+	checkParserErrors(t, parser)
 
 	if len(program.Statements) != 1 {
 		t.Fatalf(

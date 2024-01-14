@@ -28,7 +28,7 @@ func TestFunctionParameterParsing(t *testing.T) {
 		var lexer = lexer.New(test.input)
 		var parser = parser.New(lexer)
 		var program = parser.ParseProgram()
-		checkParserError(t, parser)
+		checkParserErrors(t, parser)
 
 		var statement = program.Statements[0].(*ast.ExpressionStatement)
 		var function = statement.Expression.(*ast.FunctionLiteral)

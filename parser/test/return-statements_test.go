@@ -19,7 +19,7 @@ return 993322;
 	var parser = parser.New(lexer)
 
 	var program = parser.ParseProgram()
-	checkParserError(t, parser)
+	checkParserErrors(t, parser)
 
 	if len(program.Statements) != 3 {
 		t.Fatalf(
