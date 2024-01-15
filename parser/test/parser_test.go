@@ -12,6 +12,12 @@ type TestIdentifier struct {
 	expectedIdentifier string
 }
 
+type TestLetStatement struct {
+	input              string
+	expectedIdentifier string
+	expectedValue      interface{}
+}
+
 type TestBoolean struct {
 	input    string
 	expected bool

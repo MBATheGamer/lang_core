@@ -23,7 +23,11 @@ func (parser *Parser) parseLetStatement() *ast.LetStatement {
 		return nil
 	}
 
-	for !parser.currentTokenIs(token.SEMICOLON) {
+	parser.nextToken()
+
+	statement.Value = parser.parseExpression(LOWEST)
+
+	for parser.peekTokenIs(token.SEMICOLON) {
 		parser.nextToken()
 	}
 

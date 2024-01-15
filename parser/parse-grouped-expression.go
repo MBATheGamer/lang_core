@@ -10,7 +10,7 @@ func (parser *Parser) parseGroupedExpression() ast.Expression {
 
 	var expression = parser.parseExpression(LOWEST)
 
-	if !parser.expectPeek(token.RBRACE) {
+	if !parser.expectPeek(token.RPAREN) {
 		return nil
 	}
 

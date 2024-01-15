@@ -14,7 +14,6 @@ func (parser *Parser) parseCallArguments() []ast.Expression {
 	}
 
 	parser.nextToken()
-
 	arguments = append(arguments, parser.parseExpression(LOWEST))
 
 	for parser.peekTokenIs(token.COMMA) {
