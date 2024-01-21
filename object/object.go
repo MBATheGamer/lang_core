@@ -14,4 +14,5 @@ const (
 	RETURN_VALUE_OBJ ObjectType = "RETURN_VALUE"
 	ERROR_OBJ        ObjectType = "ERROR"
 	FUNCTION_OBJ     ObjectType = "FUNCTION"
+	STRING_OBJ       ObjectType = "STRING"
 )
