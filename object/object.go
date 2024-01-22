@@ -15,4 +15,5 @@ const (
 	ERROR_OBJ        ObjectType = "ERROR"
 	FUNCTION_OBJ     ObjectType = "FUNCTION"
 	STRING_OBJ       ObjectType = "STRING"
+	BUILTIN_OBJ      ObjectType = "BUILTIN"
 )
