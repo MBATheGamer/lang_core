@@ -2,6 +2,7 @@ package parser
 
 import (
 	"github.com/MBATheGamer/lang_core/ast"
+	"github.com/MBATheGamer/lang_core/token"
 )
 
 func (parser *Parser) parseCallExpression(function ast.Expression) ast.Expression {
@@ -10,7 +11,7 @@ func (parser *Parser) parseCallExpression(function ast.Expression) ast.Expressio
 		Function: function,
 	}
 
-	expression.Arguments = parser.parseCallArguments()
+	expression.Arguments = parser.parseExpressionList(token.RPAREN)
 
 	return expression
 }
