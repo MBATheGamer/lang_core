@@ -16,4 +16,5 @@ const (
 	FUNCTION_OBJ     ObjectType = "FUNCTION"
 	STRING_OBJ       ObjectType = "STRING"
 	BUILTIN_OBJ      ObjectType = "BUILTIN"
+	ARRAY_OBJ        ObjectType = "ARRAY"
 )
