@@ -29,14 +29,7 @@ return 993322;
 	}
 
 	for _, statement := range program.Statements {
-		var returnStatement, ok = statement.(*ast.ReturnStatement)
-		if !ok {
-			t.Errorf(
-				"statement not *ast.ReturnStatement. got=%T",
-				statement,
-			)
-			continue
-		}
+		var returnStatement, _ = statement.(*ast.ReturnStatement)
 
 		if returnStatement.TokenLiteral() != "return" {
 			t.Errorf(

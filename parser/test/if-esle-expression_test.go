@@ -24,24 +24,9 @@ func TestIfElseExpression(t *testing.T) {
 		)
 	}
 
-	var statement, ok = program.Statements[0].(*ast.ExpressionStatement)
+	var statement, _ = program.Statements[0].(*ast.ExpressionStatement)
 
-	if !ok {
-		t.Fatalf(
-			"program.Statement[0] is not ast.ExpressionStatement. got=%T",
-			program.Statements[0],
-		)
-	}
-
-	var expression *ast.IfExpression
-	expression, ok = statement.Expression.(*ast.IfExpression)
-
-	if !ok {
-		t.Fatalf(
-			"statement.Expression is not ast.IfExpression. got=%T",
-			statement.Expression,
-		)
-	}
+	var expression, _ = statement.Expression.(*ast.IfExpression)
 
 	if !testInfixExpression(t, expression.Condition, "x", "<", "y") {
 		return
@@ -54,15 +39,7 @@ func TestIfElseExpression(t *testing.T) {
 		)
 	}
 
-	var consequence *ast.ExpressionStatement
-	consequence, ok = expression.Consequence.Statements[0].(*ast.ExpressionStatement)
-
-	if !ok {
-		t.Fatalf(
-			"Statements[0] is not ast.ExpressionStatement. got=%T",
-			expression.Consequence.Statements[0],
-		)
-	}
+	var consequence, _ = expression.Consequence.Statements[0].(*ast.ExpressionStatement)
 
 	if !testIdentifier(t, consequence.Expression, "x") {
 		return
@@ -75,15 +52,7 @@ func TestIfElseExpression(t *testing.T) {
 		)
 	}
 
-	var alternative *ast.ExpressionStatement
-	alternative, ok = expression.Alternative.Statements[0].(*ast.ExpressionStatement)
-
-	if !ok {
-		t.Fatalf(
-			"Statements[0] is not ast.ExpressionStatement. got=%T",
-			expression.Alternative.Statements[0],
-		)
-	}
+	var alternative, _ = expression.Alternative.Statements[0].(*ast.ExpressionStatement)
 
 	if !testIdentifier(t, alternative.Expression, "y") {
 		return

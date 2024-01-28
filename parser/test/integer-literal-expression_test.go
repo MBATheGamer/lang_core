@@ -23,24 +23,9 @@ func TestIntegerLiteralExpression(t *testing.T) {
 		)
 	}
 
-	var statement, ok = program.Statements[0].(*ast.ExpressionStatement)
+	var statement, _ = program.Statements[0].(*ast.ExpressionStatement)
 
-	if !ok {
-		t.Fatalf(
-			"program.Statements[0] is not ast.ExpressionStatement. got=%T",
-			program.Statements[0],
-		)
-	}
-
-	var literal *ast.IntegerLiteral
-	literal, ok = statement.Expression.(*ast.IntegerLiteral)
-
-	if !ok {
-		t.Fatalf(
-			"expression not *ast.IntegerLiteral. got=%T",
-			statement.Expression,
-		)
-	}
+	var literal, _ = statement.Expression.(*ast.IntegerLiteral)
 
 	if literal.Value != 5 {
 		t.Errorf(

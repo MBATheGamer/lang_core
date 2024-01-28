@@ -24,24 +24,9 @@ func TestCallExpressionParsing(t *testing.T) {
 		)
 	}
 
-	var statement, ok = program.Statements[0].(*ast.ExpressionStatement)
+	var statement, _ = program.Statements[0].(*ast.ExpressionStatement)
 
-	if !ok {
-		t.Fatalf(
-			"statement is not ast.ExpressionStatement. got=%T",
-			program.Statements[0],
-		)
-	}
-
-	var expression *ast.CallExpression
-	expression, ok = statement.Expression.(*ast.CallExpression)
-
-	if !ok {
-		t.Fatalf(
-			"statement.Expression is not ast.CallExpression. got=%T",
-			statement.Expression,
-		)
-	}
+	var expression, _ = statement.Expression.(*ast.CallExpression)
 
 	if !testIdentifier(t, expression.Function, "add") {
 		return

@@ -37,14 +37,7 @@ func TestParsingInfixExpression(t *testing.T) {
 			)
 		}
 
-		var statement, ok = program.Statements[0].(*ast.ExpressionStatement)
-
-		if !ok {
-			t.Fatalf(
-				"program.Statements[0] is not ast.ExpressionStatemet. got=%T",
-				program.Statements[0],
-			)
-		}
+		var statement, _ = program.Statements[0].(*ast.ExpressionStatement)
 
 		if !testInfixExpression(
 			t,

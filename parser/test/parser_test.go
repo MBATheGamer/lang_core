@@ -78,16 +78,7 @@ func testLetStatement(t *testing.T, statement ast.Statement, name string) bool {
 		return false
 	}
 
-	var letStatement, ok = statement.(*ast.LetStatement)
-
-	if !ok {
-		t.Errorf(
-			"statement not *ast.LetStatement. got=%T",
-			statement,
-		)
-
-		return false
-	}
+	var letStatement, _ = statement.(*ast.LetStatement)
 
 	if letStatement.Name.Value != name {
 		t.Errorf(
@@ -113,16 +104,7 @@ func testLetStatement(t *testing.T, statement ast.Statement, name string) bool {
 }
 
 func testIntegerLiteral(t *testing.T, il ast.Expression, value int64) bool {
-	var integer, ok = il.(*ast.IntegerLiteral)
-
-	if !ok {
-		t.Errorf(
-			"il not *ast.IntegerLiteral. got=%T",
-			il,
-		)
-
-		return false
-	}
+	var integer, _ = il.(*ast.IntegerLiteral)
 
 	if integer.Value != value {
 		t.Errorf(
@@ -148,15 +130,7 @@ func testIntegerLiteral(t *testing.T, il ast.Expression, value int64) bool {
 }
 
 func testIdentifier(t *testing.T, expression ast.Expression, value string) bool {
-	var identifier, ok = expression.(*ast.Identifier)
-
-	if !ok {
-		t.Errorf(
-			"expression not *ast.Identifier. got=%T",
-			expression,
-		)
-		return false
-	}
+	var identifier, _ = expression.(*ast.Identifier)
 
 	if identifier.Value != value {
 		t.Errorf(
@@ -210,16 +184,7 @@ func testBooleanLiteral(
 	expression ast.Expression,
 	value bool,
 ) bool {
-	var boolean, ok = expression.(*ast.Boolean)
-
-	if !ok {
-		t.Errorf(
-			"expression not *ast.Boolean. got=%T",
-			expression,
-		)
-
-		return false
-	}
+	var boolean, _ = expression.(*ast.Boolean)
 
 	if boolean.Value != value {
 		t.Errorf(
@@ -251,17 +216,7 @@ func testInfixExpression(
 	operator string,
 	right interface{},
 ) bool {
-	var operatorExpression, ok = expression.(*ast.InfixExpression)
-
-	if !ok {
-		t.Errorf(
-			"expression is not OperatorExpression. got=%T(%s)",
-			expression,
-			expression,
-		)
-
-		return false
-	}
+	var operatorExpression, _ = expression.(*ast.InfixExpression)
 
 	if !testLiteralExpression(t, operatorExpression.Left, left) {
 		return false

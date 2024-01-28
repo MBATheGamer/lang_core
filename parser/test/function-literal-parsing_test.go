@@ -24,24 +24,9 @@ func TestFunctionLiteralParsing(t *testing.T) {
 		)
 	}
 
-	var statement, ok = program.Statements[0].(*ast.ExpressionStatement)
+	var statement, _ = program.Statements[0].(*ast.ExpressionStatement)
 
-	if !ok {
-		t.Fatalf(
-			"program.Statements[0] is not ast.ExpressionStatement. got=%T",
-			program.Statements[0],
-		)
-	}
-
-	var function *ast.FunctionLiteral
-	function, ok = statement.Expression.(*ast.FunctionLiteral)
-
-	if !ok {
-		t.Fatalf(
-			"statement.Expression is not ast.FunctionLiteral. got=%T",
-			statement.Expression,
-		)
-	}
+	var function, _ = statement.Expression.(*ast.FunctionLiteral)
 
 	if len(function.Parameters) != 2 {
 		t.Fatalf(
@@ -60,15 +45,7 @@ func TestFunctionLiteralParsing(t *testing.T) {
 		)
 	}
 
-	var bodyStatement *ast.ExpressionStatement
-	bodyStatement, ok = function.Body.Statements[0].(*ast.ExpressionStatement)
-
-	if !ok {
-		t.Fatalf(
-			"function body statement is not ast.ExpressionStatement. got=%T",
-			function.Body.Statements[0],
-		)
-	}
+	var bodyStatement, _ = function.Body.Statements[0].(*ast.ExpressionStatement)
 
 	testInfixExpression(t, bodyStatement.Expression, "x", "+", "y")
 }

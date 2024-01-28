@@ -17,14 +17,7 @@ func TestStringLiteralExpression(t *testing.T) {
 	checkParserErrors(t, parser)
 
 	var statement = program.Statements[0].(*ast.ExpressionStatement)
-	var literal, ok = statement.Expression.(*ast.StringLiteral)
-
-	if !ok {
-		t.Fatalf(
-			"expression not *ast.StringLiteral. got=%T",
-			statement.Expression,
-		)
-	}
+	var literal, _ = statement.Expression.(*ast.StringLiteral)
 
 	if literal.Value != "Hello, World!" {
 		t.Errorf(

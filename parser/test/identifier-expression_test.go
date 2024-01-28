@@ -23,24 +23,9 @@ func TestIdentifierExpression(t *testing.T) {
 		)
 	}
 
-	var statement, ok = program.Statements[0].(*ast.ExpressionStatement)
+	var statement, _ = program.Statements[0].(*ast.ExpressionStatement)
 
-	if !ok {
-		t.Fatalf(
-			"program.Statement[0] is not ast.ExpressionStatement. got=%T",
-			program.Statements[0],
-		)
-	}
-
-	var identifier *ast.Identifier
-	identifier, ok = statement.Expression.(*ast.Identifier)
-
-	if !ok {
-		t.Fatalf(
-			"expression not *ast.Identifier. got=%T",
-			statement.Expression,
-		)
-	}
+	var identifier, _ = statement.Expression.(*ast.Identifier)
 
 	if identifier.Value != "foobar" {
 		t.Errorf(

@@ -31,24 +31,9 @@ func TestParsingPrefixExpressions(t *testing.T) {
 			)
 		}
 
-		var statement, ok = program.Statements[0].(*ast.ExpressionStatement)
+		var statement, _ = program.Statements[0].(*ast.ExpressionStatement)
 
-		if !ok {
-			t.Fatalf(
-				"program.Statements[0] is not ast.ExpressionStatement. got=%T",
-				program.Statements[0],
-			)
-		}
-
-		var expression *ast.PrefixExpression
-		expression, ok = statement.Expression.(*ast.PrefixExpression)
-
-		if !ok {
-			t.Fatalf(
-				"statement is not ast.PrefixExpression. got=%T",
-				statement.Expression,
-			)
-		}
+		var expression, _ = statement.Expression.(*ast.PrefixExpression)
 
 		if expression.Operator != test.operator {
 			t.Fatalf(

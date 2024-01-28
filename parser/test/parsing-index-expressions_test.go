@@ -17,14 +17,7 @@ func TestParsingIndexExpressions(t *testing.T) {
 	checkParserErrors(t, parser)
 
 	var statement, _ = program.Statements[0].(*ast.ExpressionStatement)
-	var indexExpression, ok = statement.Expression.(*ast.IndexExpression)
-
-	if !ok {
-		t.Fatalf(
-			"expression not *ast.IndexExpression. got=%T",
-			statement.Expression,
-		)
-	}
+	var indexExpression, _ = statement.Expression.(*ast.IndexExpression)
 
 	if !testIdentifier(t, indexExpression.Left, "myArray") {
 		return

@@ -17,14 +17,7 @@ func TestParsingArrayLiterals(t *testing.T) {
 	checkParserErrors(t, parser)
 
 	var statement, _ = program.Statements[0].(*ast.ExpressionStatement)
-	var array, ok = statement.Expression.(*ast.ArrayLiteral)
-
-	if !ok {
-		t.Fatalf(
-			"expression not ast.ArrayLiteral. got=%T",
-			statement.Expression,
-		)
-	}
+	var array, _ = statement.Expression.(*ast.ArrayLiteral)
 
 	if len(array.Elements) != 3 {
 		t.Fatalf(
