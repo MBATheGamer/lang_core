@@ -17,4 +17,5 @@ const (
 	STRING_OBJ       ObjectType = "STRING"
 	BUILTIN_OBJ      ObjectType = "BUILTIN"
 	ARRAY_OBJ        ObjectType = "ARRAY"
+	HASH_OBJ         ObjectType = "HASH"
 )
