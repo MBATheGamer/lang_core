@@ -6,6 +6,23 @@ import (
 	"github.com/MBATheGamer/lang_core/object"
 )
 
+type TestBooleanExpression struct {
+	input    string
+	expected bool
+}
+
+func TestEvalBooleanExpression(t *testing.T) {
+	var tests = []TestBooleanExpression{
+		{"true", true},
+		{"false", false},
+	}
+
+	for _, test := range tests {
+		var evaluated = testEval(test.input)
+		testBooleanObject(t, evaluated, test.expected)
+	}
+}
+
 func testBooleanObject(t *testing.T, obj object.Object, expected bool) bool {
 	var result, ok = obj.(*object.Boolean)
 
