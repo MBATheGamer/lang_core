@@ -6,13 +6,13 @@ import (
 	"github.com/MBATheGamer/lang_core/object"
 )
 
-type TestBooleanExpression struct {
+type BooleanExpressionType struct {
 	input    string
 	expected bool
 }
 
 func TestEvalBooleanExpression(t *testing.T) {
-	var tests = []TestBooleanExpression{
+	var tests = []BooleanExpressionType{
 		{"true", true},
 		{"false", false},
 	}

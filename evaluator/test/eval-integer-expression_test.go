@@ -6,13 +6,13 @@ import (
 	"github.com/MBATheGamer/lang_core/object"
 )
 
-type TestIntegerExpression struct {
+type IntegerExpressionType struct {
 	input    string
 	expected int64
 }
 
 func TestEvalIntegerExpression(t *testing.T) {
-	var tests = []TestIntegerExpression{
+	var tests = []IntegerExpressionType{
 		{"5", 5},
 		{"10", 10},
 	}
