@@ -13,6 +13,10 @@ func Eval(node ast.Node) object.Object {
 	case *ast.ExpressionStatement:
 		return Eval(node.Expression)
 
+	case *ast.PrefixExpression:
+		var right = Eval(node.Right)
+		return evalPrefixExpression(node.Operator, right)
+
 	case *ast.IntegerLiteral:
 		return &object.Integer{Value: node.Value}
 
