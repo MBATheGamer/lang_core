@@ -15,6 +15,13 @@ func TestEvalBooleanExpression(t *testing.T) {
 	var tests = []BooleanExpressionType{
 		{"true", true},
 		{"false", false},
+
+		{"!true", false},
+		{"!false", true},
+		{"!5", false},
+		{"!!true", true},
+		{"!!false", false},
+		{"!!5", true},
 	}
 
 	for _, test := range tests {
