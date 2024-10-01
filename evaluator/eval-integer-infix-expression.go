@@ -26,6 +26,11 @@ func evalIntegerInfixExpression(operator string, left, right object.Object) obje
 		return nativeBoolToBooleanObject(leftValue != rightValue)
 
 	default:
-		return NULL
+		return newError(
+			"unknown operator: %s %s %s",
+			left.Type(),
+			operator,
+			right.Type(),
+		)
 	}
 }
