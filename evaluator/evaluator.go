@@ -18,6 +18,9 @@ func Eval(node ast.Node) object.Object {
 
 	case *ast.ReturnStatement:
 		var value = Eval(node.ReturnValue)
+		if isError(value) {
+			return value
+		}
 		return &object.ReturnValue{Value: value}
 
 	case *ast.ExpressionStatement:
