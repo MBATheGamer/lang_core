@@ -28,6 +28,9 @@ func Eval(node ast.Node) object.Object {
 
 	case *ast.PrefixExpression:
 		var right = Eval(node.Right)
+		if isError(right) {
+			return right
+		}
 		return evalPrefixExpression(node.Operator, right)
 
 	case *ast.InfixExpression:
