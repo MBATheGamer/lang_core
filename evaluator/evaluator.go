@@ -35,7 +35,13 @@ func Eval(node ast.Node) object.Object {
 
 	case *ast.InfixExpression:
 		var left = Eval(node.Left)
+		if isError(left) {
+			return left
+		}
 		var right = Eval(node.Right)
+		if isError(right) {
+			return right
+		}
 		return evalInfixExpression(node.Operator, left, right)
 
 	case *ast.IntegerLiteral:
