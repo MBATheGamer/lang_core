@@ -10,6 +10,12 @@ func Eval(node ast.Node) object.Object {
 	case *ast.Program:
 		return evalProgram(node)
 
+	case *ast.LetStatement:
+		var value = Eval(node.Value)
+		if isError(value) {
+			return value
+		}
+
 	case *ast.BlockStatement:
 		return evalBlockStatement(node)
 
