@@ -10,11 +10,13 @@ import (
 )
 
 func testEval(input string) object.Object {
+	var environment = object.NewEnivronment()
+
 	var lexer = lexer.New(input)
 	var parser = parser.New(lexer)
 	var program = parser.ParseProgram()
 
-	return evaluator.Eval(program)
+	return evaluator.Eval(program, environment)
 }
 
 func testNullObject(t *testing.T, obj object.Object) bool {
