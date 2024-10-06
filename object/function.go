@@ -10,7 +10,7 @@ import (
 type Function struct {
 	Parameters  []*ast.Identifier
 	Body        *ast.BlockStatement
-	Enivronment *Enivronment
+	Enivronment *Environment
 }
 
 func (f *Function) Type() ObjectType {

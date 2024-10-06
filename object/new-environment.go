@@ -1,8 +1,8 @@
 package object
 
-func NewEnivronment() *Enivronment {
+func NewEnivronment() *Environment {
 	var store = make(map[string]Object)
-	return &Enivronment{
+	return &Environment{
 		store: store,
 		outer: nil,
 	}

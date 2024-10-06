@@ -5,7 +5,7 @@ import (
 	"github.com/MBATheGamer/lang_core/object"
 )
 
-func Eval(node ast.Node) object.Object {
+func Eval(node ast.Node, environment *object.Environment) object.Object {
 	switch node := node.(type) {
 	case *ast.Program:
 		return evalProgram(node)
