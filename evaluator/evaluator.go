@@ -11,10 +11,11 @@ func Eval(node ast.Node, environment *object.Environment) object.Object {
 		return evalProgram(node)
 
 	case *ast.LetStatement:
-		var value = Eval(node.Value)
+		var value = Eval(node.Value, environment)
 		if isError(value) {
 			return value
 		}
+		environment.Set(node.Name.Value, value)
 
 	case *ast.BlockStatement:
 		return evalBlockStatement(node)
