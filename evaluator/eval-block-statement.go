@@ -5,11 +5,11 @@ import (
 	"github.com/MBATheGamer/lang_core/object"
 )
 
-func evalBlockStatement(block *ast.BlockStatement) object.Object {
+func evalBlockStatement(block *ast.BlockStatement, environment *object.Environment) object.Object {
 	var result object.Object
 
 	for _, statement := range block.Statements {
-		result = Eval(statement)
+		result = Eval(statement, environment)
 
 		if result != nil {
 			var resultType = result.Type()
