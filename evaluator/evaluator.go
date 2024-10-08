@@ -51,6 +51,9 @@ func Eval(node ast.Node, environment *object.Environment) object.Object {
 		}
 		return evalInfixExpression(node.Operator, left, right)
 
+	case *ast.Identifier:
+		return evalIdentifier(node, environment)
+
 	case *ast.IntegerLiteral:
 		return &object.Integer{Value: node.Value}
 
