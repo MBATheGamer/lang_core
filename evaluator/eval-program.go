@@ -5,11 +5,11 @@ import (
 	"github.com/MBATheGamer/lang_core/object"
 )
 
-func evalProgram(program *ast.Program) object.Object {
+func evalProgram(program *ast.Program, environment *object.Environment) object.Object {
 	var result object.Object
 
 	for _, statement := range program.Statements {
-		result = Eval(statement)
+		result = Eval(statement, environment)
 
 		switch result := result.(type) {
 		case *object.ReturnValue:
