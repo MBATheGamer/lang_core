@@ -8,7 +8,7 @@ import (
 func Eval(node ast.Node, environment *object.Environment) object.Object {
 	switch node := node.(type) {
 	case *ast.Program:
-		return evalProgram(node)
+		return evalProgram(node, environment)
 
 	case *ast.LetStatement:
 		var value = Eval(node.Value, environment)
@@ -18,34 +18,34 @@ func Eval(node ast.Node, environment *object.Environment) object.Object {
 		environment.Set(node.Name.Value, value)
 
 	case *ast.BlockStatement:
-		return evalBlockStatement(node)
+		return evalBlockStatement(node, environment)
 
 	case *ast.IfExpression:
-		return evalIfExpression(node)
+		return evalIfExpression(node, environment)
 
 	case *ast.ReturnStatement:
-		var value = Eval(node.ReturnValue)
+		var value = Eval(node.ReturnValue, environment)
 		if isError(value) {
 			return value
 		}
 		return &object.ReturnValue{Value: value}
 
 	case *ast.ExpressionStatement:
-		return Eval(node.Expression)
+		return Eval(node.Expression, environment)
 
 	case *ast.PrefixExpression:
-		var right = Eval(node.Right)
+		var right = Eval(node.Right, environment)
 		if isError(right) {
 			return right
 		}
 		return evalPrefixExpression(node.Operator, right)
 
 	case *ast.InfixExpression:
-		var left = Eval(node.Left)
+		var left = Eval(node.Left, environment)
 		if isError(left) {
 			return left
 		}
-		var right = Eval(node.Right)
+		var right = Eval(node.Right, environment)
 		if isError(right) {
 			return right
 		}
