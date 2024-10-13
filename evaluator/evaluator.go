@@ -68,6 +68,10 @@ func Eval(node ast.Node, environment *object.Environment) object.Object {
 		if isError(function) {
 			return function
 		}
+		var arguments = evalExpressions(node.Arguments, environment)
+		if len(arguments) == 1 && isError(arguments[0]) {
+			return arguments[0]
+		}
 
 	case *ast.IntegerLiteral:
 		return &object.Integer{Value: node.Value}
