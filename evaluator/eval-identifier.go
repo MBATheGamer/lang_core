@@ -6,11 +6,13 @@ import (
 )
 
 func evalIdentifier(node *ast.Identifier, environment *object.Environment) object.Object {
-	var value, ok = environment.Get(node.Value)
-
-	if !ok {
-		return newError("identifier not found: " + node.Value)
+	if value, ok := environment.Get(node.Value); ok {
+		return value
 	}
 
-	return value
+	if builtins, ok := builtins[node.Value]; ok {
+		return builtins
+	}
+
+	return newError("identifier not found: " + node.Value)
 }
