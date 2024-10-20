@@ -3,14 +3,16 @@ package evaluator
 import "github.com/MBATheGamer/lang_core/object"
 
 func applyFunction(fn object.Object, arguments []object.Object) object.Object {
-	var function, ok = fn.(*object.Function)
+	switch fn := fn.(type) {
+	case *object.Function:
+		var extendedEnvironment = extendFunctionEnvironment(fn, arguments)
+		var evaluated = Eval(fn.Body, extendedEnvironment)
+		return unwrapReturnValue(evaluated)
 
-	if !ok {
+	case *object.Builtin:
+		return fn.Fn(arguments...)
+
+	default:
 		return newError("not a function: %s", fn.Type())
 	}
-
-	var extendedEnvironment = extendFunctionEnvironment(function, arguments)
-	var evaluated = Eval(function.Body, extendedEnvironment)
-
-	return unwrapReturnValue(evaluated)
 }
