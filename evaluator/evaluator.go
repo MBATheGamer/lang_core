@@ -80,6 +80,13 @@ func Eval(node ast.Node, environment *object.Environment) object.Object {
 	case *ast.StringLiteral:
 		return &object.String{Value: node.Value}
 
+	case *ast.ArrayLiteral:
+		var elements = evalExpressions(node.Elements, environment)
+		if len(elements) == 1 && isError(elements[0]) {
+			return elements[0]
+		}
+		return &object.Array{Elements: elements}
+
 	case *ast.Boolean:
 		return nativeBoolToBooleanObject(node.Value)
 	}
