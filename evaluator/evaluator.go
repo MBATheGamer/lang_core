@@ -87,6 +87,17 @@ func Eval(node ast.Node, environment *object.Environment) object.Object {
 		}
 		return &object.Array{Elements: elements}
 
+	case *ast.IndexExpression:
+		var left = Eval(node.Left, environment)
+		if isError(left) {
+			return left
+		}
+		var index = Eval(node.Index, environment)
+		if isError(index) {
+			return index
+		}
+		return evalIndexExpression(left, index)
+
 	case *ast.Boolean:
 		return nativeBoolToBooleanObject(node.Value)
 	}
