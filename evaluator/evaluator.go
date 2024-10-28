@@ -98,6 +98,9 @@ func Eval(node ast.Node, environment *object.Environment) object.Object {
 		}
 		return evalIndexExpression(left, index)
 
+	case *ast.HashLiteral:
+		return evalHashLiteral(node, environment)
+
 	case *ast.Boolean:
 		return nativeBoolToBooleanObject(node.Value)
 	}
