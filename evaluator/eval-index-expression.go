@@ -7,6 +7,9 @@ func evalIndexExpression(left, index object.Object) object.Object {
 	case left.Type() == object.ARRAY_OBJ && index.Type() == object.INTEGER_OBJ:
 		return evalArrayIndexExpression(left, index)
 
+	case left.Type() == object.HASH_OBJ:
+		return evalHashIndexExpression(left, index)
+
 	default:
 		return newError(
 			"index operator not supported: %s",
