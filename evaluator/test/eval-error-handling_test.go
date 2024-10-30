@@ -57,6 +57,10 @@ if (10 > 1) {
 			`"Hello" - "World"`,
 			"unknown operator: STRING - STRING",
 		},
+		{
+			`{"name": "Hero"}[fn(x) { x }]`,
+			"unusable as hash key: FUNCTION",
+		},
 	}
 
 	for _, test := range tests {
