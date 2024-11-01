@@ -5,7 +5,10 @@ import (
 	"github.com/MBATheGamer/lang_core/object"
 )
 
-func Eval(node ast.Node, environment *object.Environment) object.Object {
+func Eval(
+	node ast.Node,
+	environment *object.Environment,
+) object.Object {
 	switch node := node.(type) {
 	case *ast.Program:
 		return evalProgram(node, environment)
@@ -28,7 +31,9 @@ func Eval(node ast.Node, environment *object.Environment) object.Object {
 		if isError(value) {
 			return value
 		}
-		return &object.ReturnValue{Value: value}
+		return &object.ReturnValue{
+			Value: value,
+		}
 
 	case *ast.ExpressionStatement:
 		return Eval(node.Expression, environment)
@@ -75,17 +80,23 @@ func Eval(node ast.Node, environment *object.Environment) object.Object {
 		return applyFunction(function, arguments)
 
 	case *ast.IntegerLiteral:
-		return &object.Integer{Value: node.Value}
+		return &object.Integer{
+			Value: node.Value,
+		}
 
 	case *ast.StringLiteral:
-		return &object.String{Value: node.Value}
+		return &object.String{
+			Value: node.Value,
+		}
 
 	case *ast.ArrayLiteral:
 		var elements = evalExpressions(node.Elements, environment)
 		if len(elements) == 1 && isError(elements[0]) {
 			return elements[0]
 		}
-		return &object.Array{Elements: elements}
+		return &object.Array{
+			Elements: elements,
+		}
 
 	case *ast.IndexExpression:
 		var left = Eval(node.Left, environment)

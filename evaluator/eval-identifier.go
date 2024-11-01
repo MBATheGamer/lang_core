@@ -5,7 +5,10 @@ import (
 	"github.com/MBATheGamer/lang_core/object"
 )
 
-func evalIdentifier(node *ast.Identifier, environment *object.Environment) object.Object {
+func evalIdentifier(
+	node *ast.Identifier,
+	environment *object.Environment,
+) object.Object {
 	if value, ok := environment.Get(node.Value); ok {
 		return value
 	}
@@ -14,5 +17,8 @@ func evalIdentifier(node *ast.Identifier, environment *object.Environment) objec
 		return builtins
 	}
 
-	return newError("identifier not found: " + node.Value)
+	return newError(
+		"identifier not found: %s",
+		node.Value,
+	)
 }

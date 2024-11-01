@@ -5,7 +5,10 @@ import (
 	"github.com/MBATheGamer/lang_core/object"
 )
 
-func evalIfExpression(ifExpression *ast.IfExpression, environment *object.Environment) object.Object {
+func evalIfExpression(
+	ifExpression *ast.IfExpression,
+	environment *object.Environment,
+) object.Object {
 	var condition = Eval(ifExpression.Condition, environment)
 
 	if isError(condition) {

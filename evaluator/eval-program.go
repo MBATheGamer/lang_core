@@ -5,7 +5,10 @@ import (
 	"github.com/MBATheGamer/lang_core/object"
 )
 
-func evalProgram(program *ast.Program, environment *object.Environment) object.Object {
+func evalProgram(
+	program *ast.Program,
+	environment *object.Environment,
+) object.Object {
 	var result object.Object
 
 	for _, statement := range program.Statements {

@@ -18,5 +18,7 @@ func evalStringInfixExpression(
 	var leftValue = left.(*object.String).Value
 	var rightValue = right.(*object.String).Value
 
-	return &object.String{Value: leftValue + rightValue}
+	return &object.String{
+		Value: leftValue + rightValue,
+	}
 }

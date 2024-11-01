@@ -2,7 +2,9 @@ package evaluator
 
 import "github.com/MBATheGamer/lang_core/object"
 
-func evalBangOperatorExpression(right object.Object) object.Object {
+func evalBangOperatorExpression(
+	right object.Object,
+) object.Object {
 	switch right {
 	case TRUE:
 		return FALSE

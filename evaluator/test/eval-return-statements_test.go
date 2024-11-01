@@ -9,8 +9,7 @@ func TestEvalReturnStatements(t *testing.T) {
 		{"return 2 * 5; 9;", 10},
 		{"9; return 2 * 5; 9;", 10},
 		{`if (10 > 1) { return 10; }`, 10},
-		{`
-if (10 > 1) {
+		{`if (10 > 1) {
 	if (10 > 2) {
 		return 10;
 	}

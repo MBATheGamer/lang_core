@@ -2,7 +2,9 @@ package evaluator
 
 import "github.com/MBATheGamer/lang_core/object"
 
-func evalHashIndexExpression(hash, index object.Object) object.Object {
+func evalHashIndexExpression(
+	hash, index object.Object,
+) object.Object {
 	var hashObject = hash.(*object.Hash)
 
 	var key, ok = index.(object.Hashable)

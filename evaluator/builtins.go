@@ -18,7 +18,9 @@ var builtins = map[string]*object.Builtin{
 
 			switch argument := arguments[0].(type) {
 			case *object.Array:
-				return &object.Integer{Value: int64(len(argument.Elements))}
+				return &object.Integer{
+					Value: int64(len(argument.Elements)),
+				}
 
 			case *object.String:
 				return &object.Integer{
@@ -33,6 +35,7 @@ var builtins = map[string]*object.Builtin{
 			}
 		},
 	},
+
 	"first": {
 		Fn: func(arguments ...object.Object) object.Object {
 			if len(arguments) != 1 {
@@ -58,6 +61,7 @@ var builtins = map[string]*object.Builtin{
 			return NULL
 		},
 	},
+
 	"last": {
 		Fn: func(arguments ...object.Object) object.Object {
 			if len(arguments) != 1 {
@@ -84,6 +88,7 @@ var builtins = map[string]*object.Builtin{
 			return NULL
 		},
 	},
+
 	"rest": {
 		Fn: func(arguments ...object.Object) object.Object {
 			if len(arguments) != 1 {
@@ -115,6 +120,7 @@ var builtins = map[string]*object.Builtin{
 			return NULL
 		},
 	},
+
 	"push": {
 		Fn: func(arguments ...object.Object) object.Object {
 			if len(arguments) != 2 {
@@ -143,6 +149,7 @@ var builtins = map[string]*object.Builtin{
 			}
 		},
 	},
+
 	"puts": {
 		Fn: func(arguments ...object.Object) object.Object {
 			for _, argument := range arguments {
