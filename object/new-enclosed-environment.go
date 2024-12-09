@@ -1,6 +1,6 @@
 package object
 
-func NewEnclosedEnivronment(outer *Enivronment) *Enivronment {
+func NewEnclosedEnivronment(outer *Environment) *Environment {
 	var enivronment = NewEnivronment()
 	enivronment.outer = outer
 	return enivronment
